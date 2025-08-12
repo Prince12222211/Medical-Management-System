@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Management System - Advanced Healthcare Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'css/medical-style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <div class="medical-logo mb-4">
+                        <i class="bi bi-hospital-fill"></i>
+                        MedMS
+                    </div>
+                    <h1 class="display-3 fw-bold mb-4 fade-in">
+                        Advanced Healthcare
+                        <span class="gradient-text d-block">Management System</span>
+                    </h1>
+                    <p class="lead mb-5 fade-in fade-in-delay-1">
+                        🏥 Comprehensive healthcare management solution for modern medical practices.<br>
+                        ⚡ Streamline patient care, appointments, and medical records with cutting-edge technology.
+                    </p>
+                    <div class="d-grid gap-3 d-md-flex justify-content-md-start fade-in fade-in-delay-2">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'dashboard' %}" class="btn btn-animated btn-primary-animated btn-lg px-5">
+                                <i class="bi bi-speedometer2 me-2"></i>
+                                Dashboard
+                            </a>
+                        {% else %}
+                            <a href="{% url 'accounts:signup' %}" class="btn btn-animated btn-primary-animated btn-lg px-5 me-3">
+                                <i class="bi bi-person-plus me-2"></i>
+                                Get Started
+                            </a>
+                            <a href="{% url 'login' %}" class="btn btn-animated glass-effect btn-lg px-5">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>
+                                Sign In
+                            </a>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="row mt-5 fade-in fade-in-delay-3">
+                        <div class="col-4">
+                            <div class="text-center">
+                                <h3 class="fw-bold" data-counter="500">0</h3>
+                                <p class="small opacity-75">Patients</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-center">
+                                <h3 class="fw-bold" data-counter="50">0</h3>
+                                <p class="small opacity-75">Doctors</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-center">
+                                <h3 class="fw-bold" data-counter="1000">0</h3>
+                                <p class="small opacity-75">Records</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center hero-icon">
+                        <div class="position-relative">
+                            <i class="bi bi-heart-pulse-fill" style="font-size: 15rem; opacity: 0.9; filter: drop-shadow(0 0 30px rgba(255,255,255,0.3));"></i>
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-plus-circle-fill text-white" style="font-size: 3rem; animation: pulse 2s infinite;"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Medical Icons -->
+                        <div class="position-relative mt-4">
+                            <i class="bi bi-shield-fill-check position-absolute" style="top: -100px; left: -50px; font-size: 2rem; animation: float 4s ease-in-out infinite; animation-delay: 0s;"></i>
+                            <i class="bi bi-clipboard-pulse position-absolute" style="top: -120px; right: -30px; font-size: 2.5rem; animation: float 4s ease-in-out infinite; animation-delay: 1s;"></i>
+                            <i class="bi bi-capsule position-absolute" style="bottom: 80px; left: -80px; font-size: 2rem; animation: float 4s ease-in-out infinite; animation-delay: 2s;"></i>
+                            <i class="bi bi-activity position-absolute" style="bottom: 60px; right: -60px; font-size: 2.5rem; animation: float 4s ease-in-out infinite; animation-delay: 3s;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col">
+                    <h2 class="display-5 fw-bold">Key Features</h2>
+                    <p class="lead text-muted">Everything you need to manage your medical practice</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card-animated h-100 scroll-animate">
+                        <i class="bi bi-people-fill feature-icon-animated"></i>
+                        <h5 class="fw-bold mb-3">Patient Management</h5>
+                        <p class="text-muted">
+                            🗂️ Comprehensive patient profiles<br>
+                            📋 Medical history tracking<br>
+                            🆘 Emergency contacts<br>
+                            📊 Health analytics
+                        </p>
+                        <div class="progress-animated mt-3">
+                            <div class="progress-bar-animated" data-width="95%"></div>
+                        </div>
+                        <small class="text-muted">95% Complete</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card-animated h-100 scroll-animate">
+                        <i class="bi bi-calendar-check-fill feature-icon-animated"></i>
+                        <h5 class="fw-bold mb-3">Smart Scheduling</h5>
+                        <p class="text-muted">
+                            ⏰ Intelligent booking system<br>
+                            ⚡ Conflict detection<br>
+                            📩 Automated reminders<br>
+                            📅 Calendar sync
+                        </p>
+                        <div class="progress-animated mt-3">
+                            <div class="progress-bar-animated" data-width="90%"></div>
+                        </div>
+                        <small class="text-muted">90% Complete</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card-animated h-100 scroll-animate">
+                        <i class="bi bi-file-medical-fill feature-icon-animated"></i>
+                        <h5 class="fw-bold mb-3">Digital Records</h5>
+                        <p class="text-muted">
+                            📦 Secure cloud storage<br>
+                            🔍 Quick access search<br>
+                            📝 Comprehensive docs<br>
+                            🔒 HIPAA compliant
+                        </p>
+                        <div class="progress-animated mt-3">
+                            <div class="progress-bar-animated" data-width="98%"></div>
+                        </div>
+                        <small class="text-muted">98% Complete</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card-animated h-100 scroll-animate">
+                        <i class="bi bi-person-badge-fill feature-icon-animated"></i>
+                        <h5 class="fw-bold mb-3">Doctor Profiles</h5>
+                        <p class="text-muted">
+                            👩‍⚕️ Professional credentials<br>
+                            🎯 Specialization tracking<br>
+                            📅 Schedule management<br>
+                            📊 Performance metrics
+                        </p>
+                        <div class="progress-animated mt-3">
+                            <div class="progress-bar-animated" data-width="92%"></div>
+                        </div>
+                        <small class="text-muted">92% Complete</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    {% if user.is_authenticated %}
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <i class="bi bi-people-fill feature-icon"></i>
+                            <h4 class="card-title">Patients</h4>
+                            <p class="card-text">Manage all patient information</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <i class="bi bi-calendar3 feature-icon"></i>
+                            <h4 class="card-title">Appointments</h4>
+                            <p class="card-text">Schedule and track appointments</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <i class="bi bi-heart-pulse-fill feature-icon"></i>
+                            <h4 class="card-title">Records</h4>
+                            <p class="card-text">Maintain comprehensive medical records</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/medical-animations.js' %}"></script>
+</body>
+</html>

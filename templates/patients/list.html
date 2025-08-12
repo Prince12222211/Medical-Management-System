@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}Patients - Medical Management System{% endblock %}
+{% block page_title %}Patients{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'admin:patients_patient_add' %}" class="btn btn-primary">
+    <i class="bi bi-person-plus"></i>
+    Add New Patient
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-people"></i>
+                    All Patients
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if patients %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Patient ID</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Blood Type</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for patient in patients %}
+                                <tr>
+                                    <td><strong>{{ patient.patient_id }}</strong></td>
+                                    <td>{{ patient.full_name }}</td>
+                                    <td>{{ patient.age }} years</td>
+                                    <td>{{ patient.get_gender_display }}</td>
+                                    <td>
+                                        {% if patient.blood_type %}
+                                            <span class="badge bg-danger">{{ patient.blood_type }}</span>
+                                        {% else %}
+                                            <span class="text-muted">Not specified</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ patient.phone_number }}</td>
+                                    <td>{{ patient.email }}</td>
+                                    <td>
+                                        <a href="{% url 'admin:patients_patient_change' patient.pk %}" 
+                                           class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-pencil"></i>
+                                            Edit
+                                        </a>
+                                        <a href="{% url 'admin:appointments_appointment_add' %}?patient={{ patient.pk }}" 
+                                           class="btn btn-sm btn-outline-success">
+                                            <i class="bi bi-calendar-plus"></i>
+                                            Schedule
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="text-center text-muted py-5">
+                        <i class="bi bi-people" style="font-size: 4rem; opacity: 0.3;"></i>
+                        <h4 class="mt-3">No Patients Found</h4>
+                        <p>Get started by adding your first patient.</p>
+                        <a href="{% url 'admin:patients_patient_add' %}" class="btn btn-primary">
+                            <i class="bi bi-person-plus"></i>
+                            Add First Patient
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="bi bi-people-fill text-primary" style="font-size: 2rem;"></i>
+                <h5 class="card-title mt-2">Total Patients</h5>
+                <h3 class="text-primary">{{ patients.count }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="bi bi-person-heart text-success" style="font-size: 2rem;"></i>
+                <h5 class="card-title mt-2">Active Patients</h5>
+                <h3 class="text-success">{{ patients|length }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="bi bi-calendar-check text-info" style="font-size: 2rem;"></i>
+                <h5 class="card-title mt-2">Quick Actions</h5>
+                <div class="d-grid gap-2">
+                    <a href="{% url 'admin:patients_patient_add' %}" class="btn btn-primary btn-sm">
+                        Add Patient
+                    </a>
+                    <a href="{% url 'admin:appointments_appointment_add' %}" class="btn btn-success btn-sm">
+                        Schedule Appointment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
