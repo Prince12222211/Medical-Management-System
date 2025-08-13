@@ -10,8 +10,8 @@ python-dotenv>=1.0.0
 # HTTP Requests Library
 requests>=2.28.0
 
-# Optional: For production deployment
-# gunicorn>=20.1.0
-# psycopg2-binary>=2.9.0  # For PostgreSQL
-# whitenoise>=6.0.0       # Static files serving
-# pillow>=9.0.0           # Image processing
+# Production deployment requirements
+gunicorn>=20.1.0
+whitenoise>=6.0.0
+psycopg2-binary>=2.9.0
+dj-database-url>=2.0.0

@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: medical-management-system
+    env: python
+    buildCommand: ./build.sh
+    startCommand: gunicorn medical_management.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DEBUG
+        value: False
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: "medical-management-system.onrender.com,localhost,127.0.0.1"
+      - key: EMAIL_HOST_USER
+        value: "princeverma9504@gmail.com"
+      - key: EMAIL_HOST_PASSWORD
+        sync: false  # You'll need to set this manually
+  - type: pserv
+    name: medical-management-db
+    env: postgresql
+    plan: free
