@@ -73,7 +73,41 @@ try:
     template_dirs = [template['DIRS'] for template in settings.TEMPLATES if template['DIRS']]
     print(f"✅ Template directories: {template_dirs}")
     
+    # Check deployment-specific settings
+    print("\n🔧 Deployment Configuration Check:")
+    print(f"  DEBUG: {settings.DEBUG}")
+    print(f"  ALLOWED_HOSTS: {settings.ALLOWED_HOSTS}")
+    
+    # Check for common deployment URLs
+    render_urls = [
+        'medical-management-system-v8d5.onrender.com',
+        'medical-management-system.onrender.com'
+    ]
+    print(f"\n🌐 ALLOWED_HOSTS Verification for Render:")
+    for url in render_urls:
+        if url in settings.ALLOWED_HOSTS:
+            print(f"  ✅ {url}: Configured")
+        else:
+            print(f"  ❌ {url}: Missing (will cause Bad Request 400)")
+    
+    # Check environment variables
+    print(f"\n🔐 Environment Variables:")
+    env_vars = ['SECRET_KEY', 'DEBUG', 'ALLOWED_HOSTS', 'EMAIL_HOST_USER', 'EMAIL_HOST_PASSWORD']
+    for var in env_vars:
+        value = os.getenv(var)
+        if value:
+            if var in ['SECRET_KEY', 'EMAIL_HOST_PASSWORD']:
+                print(f"  ✅ {var}: Set (hidden)")
+            else:
+                print(f"  ✅ {var}: {value}")
+        else:
+            print(f"  ❌ {var}: Not set")
+    
     print("\n🎉 All deployment tests passed!")
+    print("\n💡 To fix Bad Request 400 error:")
+    print("1. Update render.yaml with correct ALLOWED_HOSTS")
+    print("2. Set EMAIL_HOST_PASSWORD in Render dashboard")
+    print("3. Redeploy the application")
     
 except Exception as e:
     print(f"❌ Deployment test failed: {e}")

@@ -10,7 +10,7 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: ALLOWED_HOSTS
-        value: "medical-management-system.onrender.com,localhost,127.0.0.1"
+        value: "medical-management-system-v8d5.onrender.com,medical-management-system.onrender.com,localhost,127.0.0.1"
       - key: EMAIL_HOST_USER
         value: "princeverma9504@gmail.com"
       - key: EMAIL_HOST_PASSWORD
